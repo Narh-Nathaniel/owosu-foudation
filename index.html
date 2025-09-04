@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Owusu Foundation - Home</title>
+  <style>
+    :root {
+      --primary: #4f8cff;      /* softer blue */
+      --secondary: #f7c97f;    /* muted gold underline */
+      --dark: #1f2937;
+      --light: #f9fafb;
+      --navbar-bg: #fefefe;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+      opacity: 0;
+      transform: translateX(100%);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    body.slide-in {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* HEADER + NAVBAR (matched to other pages) */
+    header {
+      background: var(--navbar-bg);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1100px;
+      margin: auto;
+      padding: 0.8rem 1rem;
+    }
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    nav img {
+      height: 50px;
+      width: auto;
+      border-radius: 50%;
+    }
+    .foundation-name {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--dark);
+    }
+
+    /* Updated Nav Links */
+    nav div {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    nav a {
+      display: inline-block;
+      margin: 0 0.9rem;
+      text-decoration: none;
+      font-weight: 700;
+      position: relative;
+      padding: 6px 0;
+      color: rgba(31,41,55,0.6);
+      transition: color 0.25s ease, opacity 0.25s ease;
+      opacity: 0.6;
+    }
+    nav a:hover, nav a:focus {
+      color: var(--primary);
+      opacity: 1;
+    }
+    nav a.active {
+      color: var(--dark);
+      opacity: 1;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 0;
+      height: 3px;
+      background: var(--secondary);
+      transition: width 220ms ease;
+      border-radius: 2px;
+    }
+    nav a:hover::after,
+    nav a:focus::after,
+    nav a.active::after {
+      width: 100%;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      background: url('https://images.unsplash.com/photo-1524504388940-b1c1722653e1') no-repeat center/cover;
+      height: 90vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+    }
+    .hero-content {
+      z-index: 2;
+      animation: fadeIn 2s ease;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+    }
+    .btn {
+      background: var(--secondary);
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 50px;
+      color: var(--dark);
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    .btn:hover {
+      background: #eab308;
+      transform: translateY(-3px);
+    }
+
+    /* SECTION STYLING */
+    section {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    .mission {
+      text-align: center;
+      animation: fadeUp 1.5s ease;
+    }
+    .mission h2 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    .mission p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      text-align: center;
+    }
+    .card:hover {
+      transform: scale(1.05);
+    }
+    .card h3 {
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    footer {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* SCROLL ANIMATION */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.6s ease;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo-container">
+        <img src="images/mbcb.jpg" alt="Owusu Foundation Logo">
+        <span class="foundation-name">Owusu Foundation</span>
+      </div>
+      <div>
+        <a href="index.html" class="active">Home</a>
+        <a href="about.html">About</a>
+        <a href="programs.html">Programs</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="donate.html">Donate</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Making a Difference, One Child at a Time</h1>
+      <p>Join us in giving hope to the children of tomorrow.</p>
+      <button class="btn" onclick="window.location.href='donate.html'">Donate Now</button>
+    </div>
+  </section>
+
+  <section class="mission reveal">
+    <h2>Our Mission</h2>
+    <p>We are committed to supporting orphans with shelter, education, and love to help them grow into a brighter future.</p>
+    <div class="cards">
+      <div class="card reveal">
+        <h3>Education</h3>
+        <p>Providing quality education to every child to build a strong future.</p>
+      </div>
+      <div class="card reveal">
+        <h3>Healthcare</h3>
+        <p>Ensuring access to proper healthcare and nutrition for all kids.</p>
+      </div>
+      <div class="card reveal">
+        <h3>Shelter</h3>
+        <p>Offering safe and loving homes where children can thrive.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Owusu Foundation. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    // Slide-in page effect
+    window.addEventListener('load', () => {
+      document.body.classList.add('slide-in');
+    });
+
+    // Smooth page transition
+    document.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', e => {
+        const target = link.getAttribute('href');
+        if (!target.includes('#') && !target.startsWith('mailto')) {
+          e.preventDefault();
+          document.body.classList.remove('slide-in');
+          document.body.style.opacity = '0';
+          setTimeout(() => window.location.href = target, 500);
+        }
+      });
+    });
+
+    // Scroll reveal animation
+    window.addEventListener('scroll', () => {
+      document.querySelectorAll('.reveal').forEach(el => {
+        const rect = el.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        if (rect < windowHeight - 50) {
+          el.classList.add('active');
+        }
+      });
+    });
+
+    // Navbar shadow on scroll
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', () => {
+      header.style.boxShadow = window.scrollY > 50 
+        ? "0 4px 20px rgba(0,0,0,0.15)" 
+        : "0 4px 10px rgba(0,0,0,0.1)";
+    });
+  </script>
+</body>
+</html>

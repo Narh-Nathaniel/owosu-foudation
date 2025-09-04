@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Owusu Foundation - Contact Us</title>
+  <style>
+    :root {
+      --primary: #3b82f6;
+      --secondary: #facc15;
+      --dark: #1f2937;
+      --light: #f9fafb;
+      --navbar-bg: #fefefe;
+    }
+    * {
+      margin: 0; padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+    body {
+      background: var(--light); 
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* Page transition animation */
+    main {
+      opacity: 0;
+      transform: translateX(100%);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    main.show {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* HEADER / NAVBAR */
+    header {
+      background: var(--navbar-bg);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: auto;
+      padding: 0.8rem 1rem;
+    }
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    nav img {
+      height: 50px;
+      width: auto;
+      border-radius: 50%;
+    }
+    .foundation-name {
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: var(--dark);
+    }
+    nav a {
+      color: #555;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease, opacity 0.3s ease;
+      position: relative;
+      opacity: 0.6;
+    }
+    nav a.active {
+      color: var(--dark);
+      opacity: 1;
+    }
+    nav a:hover {
+      color: var(--dark);
+      opacity: 1;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 0;
+      height: 2px;
+      background: var(--secondary);
+      transition: width 0.3s ease;
+    }
+    nav a:hover::after,
+    nav a.active::after {
+      width: 100%;
+    }
+
+    /* Contact Section */
+    .contact-section {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 1rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .contact-info, .contact-form {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      padding: 2rem;
+      transition: transform 0.3s;
+    }
+    .contact-info:hover, .contact-form:hover {
+      transform: scale(1.02);
+    }
+    .contact-info h2, .contact-form h2 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+    .contact-info p { margin-bottom: 1rem; }
+    .contact-form label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 0.8rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+      outline: none;
+      transition: border 0.3s;
+    }
+    .contact-form input:focus, .contact-form textarea:focus {
+      border: 1px solid var(--primary);
+    }
+    .contact-form button {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 1rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .contact-form button:hover {
+      background: #2563eb;
+    }
+    iframe {
+      width: 100%;
+      height: 250px;
+      border: none;
+      border-radius: 12px;
+    }
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      margin-top: 2rem;
+    }
+    @media(max-width: 768px) {
+      .contact-section {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo-container">
+        <img src="images/mbcb.jpg" alt="Owusu Foundation Logo">
+        <span class="foundation-name">Owusu Foundation</span>
+      </div>
+      <div>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="programs.html">Programs</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="donate.html">Donate</a>
+        <a href="contact.html" class="active">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="contact-section">
+      <div class="contact-info">
+        <h2>Get in Touch</h2>
+        <p>We’d love to hear from you! Reach out for support, partnership, or any questions you may have.</p>
+        <p><strong>Address:</strong> 123 Hope Street, Accra, Ghana</p>
+        <p><strong>Email:</strong> contact@owusufoundation.org</p>
+        <p><strong>Phone:</strong> +233 55 123 4567</p>
+        <h2>Find Us</h2>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31518.312456!2d-0.1969!3d5.6037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sAccra!5e0!3m2!1sen!2sgh!4v1673443895347"></iframe>
+      </div>
+
+      <div class="contact-form">
+        <h2>Send Us a Message</h2>
+        <form id="contactForm">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required>
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+          <label for="message">Message:</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Owusu Foundation. All Rights Reserved.
+  </footer>
+
+  <script>
+    // Slide in animation
+    document.addEventListener("DOMContentLoaded", () => {
+      const main = document.querySelector("main");
+      setTimeout(() => main.classList.add("show"), 100);
+    });
+
+    // Form submit
+    document.getElementById('contactForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      alert('Thank you! Your message has been sent.');
+      this.reset();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Owusu Foundation - Donate</title>
+  <style>
+    :root {
+      --primary: #3b82f6; 
+      --secondary: #facc15; 
+      --dark: #1f2937;
+      --light: #f9fafb;
+      --navbar-bg: #fefefe;
+    }
+    * {
+      margin: 0; padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+      scroll-behavior: smooth;
+    }
+    body {
+      background: var(--light);
+      color: var(--dark);
+      opacity: 0;
+      transform: translateX(50px);
+      animation: slideIn 0.8s ease forwards;
+    }
+
+    /* HEADER / NAVBAR */
+    header {
+      background: var(--navbar-bg);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: auto;
+      padding: 0.8rem 1rem;
+    }
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    nav img {
+      height: 50px;
+      width: auto;
+      border-radius: 50%;
+    }
+    .foundation-name {
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: var(--dark);
+    }
+    nav a {
+      color: #555;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease, opacity 0.3s ease;
+      position: relative;
+      opacity: 0.6;
+    }
+    nav a.active {
+      color: var(--dark);
+      opacity: 1;
+    }
+    nav a:hover {
+      color: var(--dark);
+      opacity: 1;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 0;
+      height: 2px;
+      background: var(--secondary);
+      transition: width 0.3s ease;
+    }
+    nav a:hover::after,
+    nav a.active::after {
+      width: 100%;
+    }
+
+    /* HERO */
+    .hero {
+      background: url('https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+      color: white; 
+      text-align: center; 
+      padding: 5rem 1rem;
+    }
+    .hero h1 {
+      font-size: 2.5rem; 
+      margin-bottom: 1rem;
+    }
+
+    /* DONATION OPTIONS */
+    .donation-options {
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem; 
+      padding: 2rem; 
+      max-width: 1200px; 
+      margin: auto;
+    }
+    .option {
+      background: white; 
+      padding: 1.5rem; 
+      border-radius: 12px;
+      text-align: center; 
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .option:hover {
+      transform: translateY(-5px); 
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+    .option img { width: 60px; margin-bottom: 1rem; }
+
+    /* DONATION FORM */
+    .donation-form {
+      background: white; 
+      padding: 2rem; 
+      border-radius: 12px;
+      max-width: 500px; 
+      margin: 2rem auto;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .donation-form h2 { 
+      margin-bottom: 1rem; 
+      text-align: center; 
+    }
+    .donation-form input, 
+    .donation-form textarea, 
+    .donation-form button {
+      width: 100%; 
+      padding: 10px; 
+      margin: 10px 0;
+      border-radius: 6px; 
+      border: 1px solid #ddd;
+    }
+    .donation-form button {
+      background: var(--primary); 
+      color: white; 
+      border: none;
+      font-size: 1rem; 
+      cursor: pointer; 
+      transition: 0.3s;
+    }
+    .donation-form button:hover { background: #2563eb; }
+
+    footer {
+      background: var(--dark); 
+      color: white; 
+      text-align: center;
+      padding: 1rem; 
+      margin-top: 2rem;
+    }
+
+    /* ANIMATION */
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo-container">
+        <img src="images/mbcb.jpg" alt="Owusu Foundation Logo">
+        <span class="foundation-name">Owusu Foundation</span>
+      </div>
+      <div>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="programs.html">Programs</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="donate.html" class="active">Donate</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Support Our Mission</h1>
+    <p>Your donation brings hope and opportunities to children in need.</p>
+  </section>
+
+  <section class="donation-options">
+    <div class="option">
+      <img src="https://cdn-icons-png.flaticon.com/512/2331/2331870.png" alt="Bank">
+      <h3>Bank Transfer</h3>
+      <p>Account Name: Owusu Foundation<br>Account No: 1234567890<br>Bank: ABC Bank</p>
+    </div>
+    <div class="option">
+      <img src="https://cdn-icons-png.flaticon.com/512/2331/2331943.png" alt="Mobile Money">
+      <h3>Mobile Money</h3>
+      <p>Momo Number: +233 24 123 4567<br>Network: MTN</p>
+    </div>
+    <div class="option">
+      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968144.png" alt="PayPal">
+      <h3>PayPal</h3>
+      <p><a href="#">Click here to donate via PayPal</a></p>
+    </div>
+  </section>
+
+  <section class="donation-form">
+    <h2>Quick Donation</h2>
+    <form id="donationForm">
+      <input type="text" placeholder="Full Name" required>
+      <input type="email" placeholder="Email" required>
+      <input type="number" placeholder="Amount (USD)" required>
+      <textarea placeholder="Message (optional)"></textarea>
+      <button type="submit">Donate Now</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Owusu Foundation | All Rights Reserved</p>
+  </footer>
+
+  <script>
+    document.getElementById('donationForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Thank you for your donation! We appreciate your support.');
+      this.reset();
+    });
+  </script>
+</body>
+</html>

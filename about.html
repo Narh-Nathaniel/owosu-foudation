@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Owusu Foundation - About Us</title>
+  <style>
+    :root {
+      --primary: #4f8cff;      /* softer blue used for accents */
+      --secondary: #f7c97f;    /* muted gold (underline) */
+      --dark: #1f2937;
+      --light: #f9fafb;
+      --navbar-bg: #fefefe;    /* off-white navbar */
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif; scroll-behavior: smooth; }
+
+    /* page entrance */
+    body {
+      background: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+      opacity: 0;
+      transform: translateX(50px);
+      animation: slideIn 0.8s ease forwards;
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(50px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    /* HEADER / NAVBAR (updated to match Donate page exactly) */
+    header {
+      background: var(--navbar-bg);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      max-width:1200px;
+      margin:auto;
+      padding:0.8rem 1rem;
+    }
+
+    .logo-container {
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .logo-container img {
+      height:50px;
+      width:auto;
+      border-radius:50%;
+      display:block;
+    }
+
+    .foundation-name {
+      font-weight:700;
+      font-size:1.1rem;
+      color:var(--dark);
+      line-height:1;
+    }
+
+    /* nav links on the right */
+    .nav-links {
+      display:flex;
+      align-items:center;
+      gap: 0.25rem; /* small gap; each link has margin */
+    }
+
+    .nav-links a {
+      display:inline-block;            /* inline-block so ::after width works */
+      margin: 0 0.9rem;
+      text-decoration:none;
+      color:#555;
+      font-weight:700;
+      opacity:0.6;
+      position:relative;
+      padding: 6px 0;                  /* room for underline */
+      transition: color 0.25s ease, opacity 0.25s ease;
+    }
+
+    /* active link: darker text and underline */
+    .nav-links a.active {
+      color: var(--dark);
+      opacity: 1;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -6px;                    /* place line slightly below text */
+      width: 0;
+      height: 3px;
+      background: var(--secondary);    /* gold underline */
+      transition: width 220ms ease;
+      border-radius:2px;
+    }
+
+    /* hover or active shows gold underline */
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: var(--primary);
+      opacity: 1;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a:focus::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    /* rest of your original page (left unchanged) */
+    .hero {
+      background: url('https://images.unsplash.com/photo-1603575448362-17d7e3b1f8b6') center/cover no-repeat;
+      color: white;
+      text-align: center;
+      padding: 5rem 2rem;
+      position: relative;
+    }
+    .hero::after { content: ""; position:absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.4); }
+    .hero h2, .hero p { position: relative; z-index: 2; }
+    .hero h2 { font-size: 3rem; margin-bottom: 1rem; text-shadow: 2px 2px 6px rgba(0,0,0,0.6); }
+
+    .section {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: auto;
+      animation: fadeUp 1.2s ease;
+    }
+    @keyframes fadeUp { from { opacity:0; transform: translateY(30px); } to { opacity:1; transform: translateY(0); } }
+
+    .cards { display:grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap:2rem; }
+    .card { background:white; border-radius:12px; padding:2rem; text-align:center; box-shadow:0 4px 10px rgba(0,0,0,0.1); transition: transform .3s, box-shadow .3s; }
+    .card:hover { transform: translateY(-10px); box-shadow:0 6px 20px rgba(0,0,0,0.2); }
+
+    .team { display:grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap:2rem; text-align:center; }
+    .team img { width:100%; border-radius:50%; margin-bottom:1rem; }
+
+    .timeline { border-left:3px solid var(--primary); margin-top:2rem; padding-left:1.5rem; }
+    .timeline-item { margin-bottom:2rem; position:relative; }
+    .timeline-item::before { content:''; width:15px; height:15px; background:var(--primary); border-radius:50%; position:absolute; left:-9px; top:5px; }
+
+    .cta { background: var(--secondary); padding:3rem 2rem; text-align:center; border-radius:10px; margin-top:4rem; }
+    .cta h3 { font-size:2rem; margin-bottom:1rem; }
+    .cta button { background: var(--primary); color:white; padding:0.8rem 1.5rem; border:none; border-radius:5px; cursor:pointer; transition:background .3s; }
+    .cta button:hover { background:#3b73d9; }
+
+    footer { background:var(--dark); color:white; text-align:center; padding:1.5rem 1rem; margin-top:3rem; }
+
+    @media (max-width: 768px) {
+      nav { padding: 0.6rem 0.8rem; }
+      .nav-links a { margin: 0 0.6rem; font-size:0.95rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo-container">
+        <img src="images/mbcb.jpg" alt="Owusu Foundation Logo">
+        <span class="foundation-name">Owusu Foundation</span>
+      </div>
+
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html" class="active">About</a>
+        <a href="programs.html">Programs</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="donate.html">Donate</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- content kept exactly as you provided -->
+  <section class="hero">
+    <h2>About Owusu Foundation</h2>
+    <p>Changing lives, one child at a time.</p>
+  </section>
+
+  <section class="section">
+    <h2>Our Mission & Vision</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Mission</h3>
+        <p>To provide a safe, nurturing, and supportive environment for children in need, empowering them to thrive and achieve their dreams.</p>
+      </div>
+      <div class="card">
+        <h3>Vision</h3>
+        <p>To create a world where every child has access to love, education, and opportunities, regardless of their background.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Meet Our Team</h2>
+    <div class="team">
+      <div>
+        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Team Member">
+        <h3>Jane Doe</h3>
+        <p>Founder</p>
+      </div>
+      <div>
+        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Team Member">
+        <h3>John Smith</h3>
+        <p>Program Director</p>
+      </div>
+      <div>
+        <img src="https://randomuser.me/api/portraits/women/46.jpg" alt="Team Member">
+        <h3>Mary Johnson</h3>
+        <p>Volunteer Coordinator</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Our Journey</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <h4>2015 - Foundation Established</h4>
+        <p>Owusu Foundation was created to provide a safe haven for underprivileged children.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>2018 - Expanded Programs</h4>
+        <p>Introduced education and vocational training programs for children and young adults.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>2022 - Community Outreach</h4>
+        <p>Started outreach initiatives to support local families in need.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <h3>Be a Part of the Change</h3>
+    <p>Join us in making a lasting difference in the lives of these children.</p>
+    <button onclick="window.location.href='donate.html'">Donate Now</button>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Owusu Foundation. All Rights Reserved.</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Programs - Owusu Foundation</title>
+  <style>
+    :root {
+      --primary: #2a9d8f;
+      --secondary: #f4a261;
+      --light: #fefefe;
+      --dark: #264653;
+      --navbar-bg: #fefefe;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+    body {
+      background: #fafafa;
+      color: var(--dark);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* PAGE WRAPPER ANIMATION (fade/slide-in from right) */
+    .page {
+      opacity: 0;
+      transform: translateX(60px);
+      transition: opacity 600ms ease, transform 600ms ease;
+    }
+    .page.show {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* Respect user reduced motion preference */
+    @media (prefers-reduced-motion: reduce) {
+      .page {
+        transition: none;
+        transform: none;
+        opacity: 1;
+      }
+    }
+
+    /* HEADER / NAVBAR */
+    header {
+      background: var(--navbar-bg);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: auto;
+      padding: 0.8rem 1rem;
+    }
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    nav img {
+      height: 50px;
+      width: auto;
+      border-radius: 50%;
+    }
+    .foundation-name {
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: var(--dark);
+    }
+    nav a {
+      color: #555;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease, opacity 0.3s ease;
+      position: relative;
+      opacity: 0.6;
+    }
+    nav a.active {
+      color: var(--dark);
+      opacity: 1;
+    }
+    nav a:hover {
+      color: var(--dark);
+      opacity: 1;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 0;
+      height: 2px;
+      background: var(--secondary);
+      transition: width 0.3s ease;
+    }
+    nav a:hover::after,
+    nav a.active::after {
+      width: 100%;
+    }
+
+    /* PAGE CONTENT */
+    .hero {
+      background: url("https://images.unsplash.com/photo-1524504388940-b1c1722653e1") center/cover no-repeat;
+      color: white;
+      text-align: center;
+      padding: 5rem 1rem;
+      position: relative;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+    }
+    .hero p {
+      font-size: 1.2rem;
+    }
+
+    .programs-section {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    .programs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .program-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.45s ease;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .program-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    .program-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+    .program-card h3 {
+      padding: 1rem;
+      color: var(--dark);
+    }
+    .program-card p {
+      padding: 0 1rem 1rem;
+      color: #333;
+      font-size: 0.95rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: var(--dark);
+      color: white;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 2rem; }
+      nav { padding: 0.6rem; }
+      nav a { margin: 0 0.5rem; font-size: 0.95rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo-container">
+        <img src="images/mbcb.jpg" alt="Owusu Foundation Logo">
+        <span class="foundation-name">Owusu Foundation</span>
+      </div>
+      <div>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="programs.html" class="active">Programs</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="donate.html">Donate</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- wrap the content in a simple .page container so it fades/slides in as one unit -->
+  <div class="page" aria-hidden="false">
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Our Programs</h1>
+        <p>Discover how we’re making an impact in children’s lives</p>
+      </div>
+    </section>
+
+    <section class="programs-section">
+      <h2 style="text-align:center; margin-bottom:2rem;">Explore Our Programs</h2>
+      <div class="programs-grid">
+        <div class="program-card">
+          <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1200&q=80&auto=format&fit=crop" alt="Education Support">
+          <h3>Education Support</h3>
+          <p>We provide educational resources, scholarships, and mentorship to help children achieve their dreams.</p>
+        </div>
+        <div class="program-card">
+          <img src="https://images.unsplash.com/photo-1573497491208-6b1acb260507?w=1200&q=80&auto=format&fit=crop" alt="Healthcare Program">
+          <h3>Healthcare Initiatives</h3>
+          <p>Our team ensures access to healthcare services, vaccinations, and proper nutrition for all children.</p>
+        </div>
+        <div class="program-card">
+          <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?w=1200&q=80&auto=format&fit=crop" alt="Skill Training">
+          <h3>Skills Development</h3>
+          <p>We empower youth with essential life and vocational skills to prepare them for future opportunities.</p>
+        </div>
+        <div class="program-card">
+          <img src="https://images.unsplash.com/photo-1503428593586-e225b39bddfe?w=1200&q=80&auto=format&fit=crop" alt="Community Events">
+          <h3>Community Events</h3>
+          <p>We organize events and activities that promote unity, joy, and a sense of belonging for all children.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Owusu Foundation. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Add the show class to trigger the fade/slide in.
+    // Small timeout makes the animation feel smoother across browsers.
+    document.addEventListener('DOMContentLoaded', () => {
+      const page = document.querySelector('.page');
+      // ensure images load nicely then animate (improves perceived smoothness)
+      const imgs = Array.from(page.querySelectorAll('img'));
+      let loaded = 0;
+      if (imgs.length === 0) {
+        // no images: just show
+        setTimeout(() => page.classList.add('show'), 40);
+      } else {
+        imgs.forEach(img => {
+          // if already cached/complete
+          if (img.complete) {
+            loaded++;
+            if (loaded === imgs.length) setTimeout(() => page.classList.add('show'), 40);
+          } else {
+            img.addEventListener('load', () => {
+              loaded++;
+              if (loaded === imgs.length) setTimeout(() => page.classList.add('show'), 40);
+            });
+            // also handle error so page doesn't hang if an image fails
+            img.addEventListener('error', () => {
+              loaded++;
+              if (loaded === imgs.length) setTimeout(() => page.classList.add('show'), 40);
+            });
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

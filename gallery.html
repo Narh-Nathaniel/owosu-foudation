@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Owusu Foundation - Gallery</title>
+  <style>
+    :root {
+      --primary: #3b82f6; /* Blue highlight */
+      --secondary: #facc15; /* Gold for underline */
+      --dark: #1f2937;
+      --light: #f9fafb;
+      --navbar-bg: #fefefe;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+      scroll-behavior: smooth;
+    }
+    body {
+      background: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+      opacity: 0;
+      transform: translateX(50px);
+      animation: slideIn 0.8s ease forwards;
+    }
+
+    /* HEADER / NAVBAR */
+    header {
+      background: var(--navbar-bg);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: auto;
+      padding: 0.8rem 1rem;
+    }
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    nav img {
+      height: 50px;
+      width: auto;
+      border-radius: 50%;
+    }
+    .foundation-name {
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: var(--dark);
+    }
+    nav a {
+      color: #555;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease, opacity 0.3s ease;
+      position: relative;
+      opacity: 0.6;
+    }
+    nav a.active {
+      color: var(--dark);
+      opacity: 1;
+    }
+    nav a:hover {
+      color: var(--dark);
+      opacity: 1;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 0;
+      height: 2px;
+      background: var(--secondary);
+      transition: width 0.3s ease;
+    }
+    nav a:hover::after,
+    nav a.active::after {
+      width: 100%;
+    }
+
+    /* GALLERY SECTION */
+    .gallery-section {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .gallery-section h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 2.5rem;
+      color: var(--primary);
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+    .gallery-grid img {
+      width: 100%;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .gallery-grid img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    /* LIGHTBOX */
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+    }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 10px;
+    }
+    .lightbox:target {
+      display: flex;
+    }
+
+    footer {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+
+    /* ANIMATIONS */
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo-container">
+        <img src="images/mbcb.jpg" alt="Owusu Foundation Logo">
+        <span class="foundation-name">Owusu Foundation</span>
+      </div>
+      <div>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="programs.html">Programs</a>
+        <a href="gallery.html" class="active">Gallery</a>
+        <a href="donate.html">Donate</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="gallery-section">
+    <h2>Our Gallery</h2>
+    <div class="gallery-grid">
+      <a href="#img1"><img src="https://picsum.photos/id/1015/600/400" alt="Gallery Image 1"></a>
+      <a href="#img2"><img src="https://picsum.photos/id/1025/600/400" alt="Gallery Image 2"></a>
+      <a href="#img3"><img src="https://picsum.photos/id/1035/600/400" alt="Gallery Image 3"></a>
+      <a href="#img4"><img src="https://picsum.photos/id/1045/600/400" alt="Gallery Image 4"></a>
+      <a href="#img5"><img src="https://picsum.photos/id/1055/600/400" alt="Gallery Image 5"></a>
+      <a href="#img6"><img src="https://picsum.photos/id/1065/600/400" alt="Gallery Image 6"></a>
+    </div>
+  </section>
+
+  <!-- Lightboxes -->
+  <div class="lightbox" id="img1"><img src="https://picsum.photos/id/1015/1200/800" alt=""><a href="#gallery"></a></div>
+  <div class="lightbox" id="img2"><img src="https://picsum.photos/id/1025/1200/800" alt=""><a href="#gallery"></a></div>
+  <div class="lightbox" id="img3"><img src="https://picsum.photos/id/1035/1200/800" alt=""><a href="#gallery"></a></div>
+  <div class="lightbox" id="img4"><img src="https://picsum.photos/id/1045/1200/800" alt=""><a href="#gallery"></a></div>
+  <div class="lightbox" id="img5"><img src="https://picsum.photos/id/1055/1200/800" alt=""><a href="#gallery"></a></div>
+  <div class="lightbox" id="img6"><img src="https://picsum.photos/id/1065/1200/800" alt=""><a href="#gallery"></a></div>
+
+  <footer>
+    <p>&copy; 2025 Owusu Foundation. All Rights Reserved.</p>
+  </footer>
+</body>
+</html>
