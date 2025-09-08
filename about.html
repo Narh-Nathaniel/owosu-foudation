@@ -1,22 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Owusu Foundation - About Us</title>
   <style>
     :root {
-      --primary: #4f8cff;      /* softer blue used for accents */
-      --secondary: #f7c97f;    /* muted gold (underline) */
+      --primary: #4f8cff;
+      --secondary: #f7c97f;
       --dark: #1f2937;
       --light: #f9fafb;
-      --navbar-bg: #fefefe;    /* off-white navbar */
+      --navbar-bg: #fefefe;
     }
 
     * { margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif; scroll-behavior: smooth; }
 
-    /* page entrance */
     body {
       background: var(--light);
       color: var(--dark);
@@ -28,10 +26,10 @@
 
     @keyframes slideIn {
       from { opacity: 0; transform: translateX(50px); }
-      to   { opacity: 1; transform: translateX(0); }
+      to { opacity: 1; transform: translateX(0); }
     }
 
-    /* HEADER / NAVBAR (updated to match Donate page exactly) */
+    /* HEADER / NAVBAR */
     header {
       background: var(--navbar-bg);
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -69,26 +67,24 @@
       line-height:1;
     }
 
-    /* nav links on the right */
     .nav-links {
       display:flex;
       align-items:center;
-      gap: 0.25rem; /* small gap; each link has margin */
+      gap: 0.25rem;
     }
 
     .nav-links a {
-      display:inline-block;            /* inline-block so ::after width works */
+      display:inline-block;
       margin: 0 0.9rem;
       text-decoration:none;
       color:#555;
       font-weight:700;
       opacity:0.6;
       position:relative;
-      padding: 6px 0;                  /* room for underline */
+      padding: 6px 0;
       transition: color 0.25s ease, opacity 0.25s ease;
     }
 
-    /* active link: darker text and underline */
     .nav-links a.active {
       color: var(--dark);
       opacity: 1;
@@ -98,15 +94,14 @@
       content: '';
       position: absolute;
       left: 0;
-      bottom: -6px;                    /* place line slightly below text */
+      bottom: -6px;
       width: 0;
       height: 3px;
-      background: var(--secondary);    /* gold underline */
+      background: var(--secondary);
       transition: width 220ms ease;
       border-radius:2px;
     }
 
-    /* hover or active shows gold underline */
     .nav-links a:hover,
     .nav-links a:focus {
       color: var(--primary);
@@ -119,7 +114,39 @@
       width: 100%;
     }
 
-    /* rest of your original page (left unchanged) */
+    /* Hamburger Menu */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+    }
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background: var(--dark);
+      border-radius: 5px;
+      transition: all 0.3s;
+    }
+
+    @media(max-width: 768px) {
+      .hamburger { display: flex; }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px; right: 0;
+        background: var(--navbar-bg);
+        width: 200px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        padding: 1rem;
+      }
+      .nav-links.show {
+        display: flex;
+      }
+    }
+
+    /* PAGE CONTENT */
     .hero {
       background: url('https://images.unsplash.com/photo-1603575448362-17d7e3b1f8b6') center/cover no-repeat;
       color: white;
@@ -131,12 +158,7 @@
     .hero h2, .hero p { position: relative; z-index: 2; }
     .hero h2 { font-size: 3rem; margin-bottom: 1rem; text-shadow: 2px 2px 6px rgba(0,0,0,0.6); }
 
-    .section {
-      padding: 4rem 2rem;
-      max-width: 1200px;
-      margin: auto;
-      animation: fadeUp 1.2s ease;
-    }
+    .section { padding: 4rem 2rem; max-width: 1200px; margin: auto; animation: fadeUp 1.2s ease; }
     @keyframes fadeUp { from { opacity:0; transform: translateY(30px); } to { opacity:1; transform: translateY(0); } }
 
     .cards { display:grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap:2rem; }
@@ -156,11 +178,6 @@
     .cta button:hover { background:#3b73d9; }
 
     footer { background:var(--dark); color:white; text-align:center; padding:1.5rem 1rem; margin-top:3rem; }
-
-    @media (max-width: 768px) {
-      nav { padding: 0.6rem 0.8rem; }
-      .nav-links a { margin: 0 0.6rem; font-size:0.95rem; }
-    }
   </style>
 </head>
 <body>
@@ -170,7 +187,9 @@
         <img src="images/mbcb.jpg" alt="Owusu Foundation Logo">
         <span class="foundation-name">Owusu Foundation</span>
       </div>
-
+      <div class="hamburger" onclick="toggleMenu()">
+        <div></div><div></div><div></div>
+      </div>
       <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="about.html" class="active">About</a>
@@ -182,7 +201,6 @@
     </nav>
   </header>
 
-  <!-- content kept exactly as you provided -->
   <section class="hero">
     <h2>About Owusu Foundation</h2>
     <p>Changing lives, one child at a time.</p>
@@ -250,6 +268,11 @@
   <footer>
     <p>&copy; 2025 Owusu Foundation. All Rights Reserved.</p>
   </footer>
+
+  <script>
+    function toggleMenu() {
+      document.querySelector('.nav-links').classList.toggle('show');
+    }
+  </script>
 </body>
 </html>
-
