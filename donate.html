@@ -57,24 +57,27 @@
       font-size: 1.2rem;
       color: var(--dark);
     }
-    nav a {
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+    .nav-links a {
       color: #555;
-      margin: 0 1rem;
       text-decoration: none;
       font-weight: bold;
       transition: color 0.3s ease, opacity 0.3s ease;
       position: relative;
       opacity: 0.6;
     }
-    nav a.active {
+    .nav-links a.active {
       color: var(--dark);
       opacity: 1;
     }
-    nav a:hover {
+    .nav-links a:hover {
       color: var(--dark);
       opacity: 1;
     }
-    nav a::after {
+    .nav-links a::after {
       content: '';
       position: absolute;
       left: 0;
@@ -84,9 +87,43 @@
       background: var(--secondary);
       transition: width 0.3s ease;
     }
-    nav a:hover::after,
-    nav a.active::after {
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
       width: 100%;
+    }
+
+    /* HAMBURGER MENU */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background: var(--dark);
+      border-radius: 2px;
+    }
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: var(--navbar-bg);
+        position: absolute;
+        top: 60px;
+        right: 10px;
+        width: 200px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        padding: 1rem;
+      }
+      .nav-links.show {
+        display: flex;
+      }
+      .hamburger {
+        display: flex;
+      }
     }
 
     /* HERO */
@@ -178,7 +215,12 @@
         <img src="images/mbcb.jpg" alt="Owusu Foundation Logo">
         <span class="foundation-name">Owusu Foundation</span>
       </div>
-      <div>
+      <div class="hamburger" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="programs.html">Programs</a>
@@ -228,6 +270,9 @@
   </footer>
 
   <script>
+    function toggleMenu() {
+      document.querySelector('.nav-links').classList.toggle('show');
+    }
     document.getElementById('donationForm').addEventListener('submit', function(e) {
       e.preventDefault();
       alert('Thank you for your donation! We appreciate your support.');
