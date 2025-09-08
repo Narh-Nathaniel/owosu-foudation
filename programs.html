@@ -12,12 +12,14 @@
       --dark: #264653;
       --navbar-bg: #fefefe;
     }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       font-family: Arial, sans-serif;
     }
+
     body {
       background: #fafafa;
       color: var(--dark);
@@ -26,7 +28,7 @@
       -moz-osx-font-smoothing: grayscale;
     }
 
-    /* PAGE WRAPPER ANIMATION (fade/slide-in from right) */
+    /* PAGE WRAPPER ANIMATION */
     .page {
       opacity: 0;
       transform: translateX(60px);
@@ -37,7 +39,6 @@
       transform: translateX(0);
     }
 
-    /* Respect user reduced motion preference */
     @media (prefers-reduced-motion: reduce) {
       .page {
         transition: none;
@@ -54,6 +55,7 @@
       top: 0;
       z-index: 1000;
     }
+
     nav {
       display: flex;
       justify-content: space-between;
@@ -61,23 +63,33 @@
       max-width: 1200px;
       margin: auto;
       padding: 0.8rem 1rem;
+      position: relative;
     }
+
     .logo-container {
       display: flex;
       align-items: center;
       gap: 10px;
     }
+
     nav img {
       height: 50px;
       width: auto;
       border-radius: 50%;
     }
+
     .foundation-name {
       font-weight: bold;
       font-size: 1.2rem;
       color: var(--dark);
     }
-    nav a {
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links a {
       color: #555;
       margin: 0 1rem;
       text-decoration: none;
@@ -86,15 +98,18 @@
       position: relative;
       opacity: 0.6;
     }
-    nav a.active {
+
+    .nav-links a.active {
       color: var(--dark);
       opacity: 1;
     }
-    nav a:hover {
+
+    .nav-links a:hover {
       color: var(--dark);
       opacity: 1;
     }
-    nav a::after {
+
+    .nav-links a::after {
       content: '';
       position: absolute;
       left: 0;
@@ -104,12 +119,46 @@
       background: var(--secondary);
       transition: width 0.3s ease;
     }
-    nav a:hover::after,
-    nav a.active::after {
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
       width: 100%;
     }
 
-    /* PAGE CONTENT */
+    /* HAMBURGER BUTTON */
+    .hamburger {
+      display: none;
+      font-size: 2rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--dark);
+    }
+
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 1rem;
+        background: var(--navbar-bg);
+        position: absolute;
+        top: 70px;
+        right: 10px;
+        padding: 1rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+    }
+
+    /* HERO SECTION */
     .hero {
       background: url("https://images.unsplash.com/photo-1524504388940-b1c1722653e1") center/cover no-repeat;
       color: white;
@@ -117,6 +166,7 @@
       padding: 5rem 1rem;
       position: relative;
     }
+
     .hero::after {
       content: '';
       position: absolute;
@@ -124,28 +174,34 @@
       width: 100%; height: 100%;
       background: rgba(0,0,0,0.5);
     }
+
     .hero-content {
       position: relative;
       z-index: 1;
     }
+
     .hero h1 {
       font-size: 3rem;
       margin-bottom: 0.5rem;
     }
+
     .hero p {
       font-size: 1.2rem;
     }
 
+    /* PROGRAMS SECTION */
     .programs-section {
       max-width: 1200px;
       margin: 2rem auto;
       padding: 0 1rem;
     }
+
     .programs-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.5rem;
     }
+
     .program-card {
       background: white;
       border-radius: 10px;
@@ -155,26 +211,31 @@
       opacity: 1;
       transform: translateY(0);
     }
+
     .program-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     }
+
     .program-card img {
       width: 100%;
       height: 200px;
       object-fit: cover;
       display: block;
     }
+
     .program-card h3 {
       padding: 1rem;
       color: var(--dark);
     }
+
     .program-card p {
       padding: 0 1rem 1rem;
       color: #333;
       font-size: 0.95rem;
     }
 
+    /* FOOTER */
     footer {
       text-align: center;
       padding: 1rem;
@@ -186,7 +247,7 @@
     @media (max-width: 600px) {
       .hero h1 { font-size: 2rem; }
       nav { padding: 0.6rem; }
-      nav a { margin: 0 0.5rem; font-size: 0.95rem; }
+      .nav-links a { margin: 0 0.5rem; font-size: 0.95rem; }
     }
   </style>
 </head>
@@ -197,7 +258,8 @@
         <img src="images/mbcb.jpg" alt="Owusu Foundation Logo">
         <span class="foundation-name">Owusu Foundation</span>
       </div>
-      <div>
+      <button class="hamburger" aria-label="Toggle Menu">☰</button>
+      <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="programs.html" class="active">Programs</a>
@@ -208,8 +270,7 @@
     </nav>
   </header>
 
-  <!-- wrap the content in a simple .page container so it fades/slides in as one unit -->
-  <div class="page" aria-hidden="false">
+  <div class="page">
     <section class="hero">
       <div class="hero-content">
         <h1>Our Programs</h1>
@@ -249,35 +310,30 @@
   </footer>
 
   <script>
-    // Add the show class to trigger the fade/slide in.
-    // Small timeout makes the animation feel smoother across browsers.
+    // Animate page content
     document.addEventListener('DOMContentLoaded', () => {
       const page = document.querySelector('.page');
-      // ensure images load nicely then animate (improves perceived smoothness)
       const imgs = Array.from(page.querySelectorAll('img'));
       let loaded = 0;
+
       if (imgs.length === 0) {
-        // no images: just show
         setTimeout(() => page.classList.add('show'), 40);
       } else {
         imgs.forEach(img => {
-          // if already cached/complete
-          if (img.complete) {
+          const done = () => {
             loaded++;
             if (loaded === imgs.length) setTimeout(() => page.classList.add('show'), 40);
-          } else {
-            img.addEventListener('load', () => {
-              loaded++;
-              if (loaded === imgs.length) setTimeout(() => page.classList.add('show'), 40);
-            });
-            // also handle error so page doesn't hang if an image fails
-            img.addEventListener('error', () => {
-              loaded++;
-              if (loaded === imgs.length) setTimeout(() => page.classList.add('show'), 40);
-            });
-          }
+          };
+          img.complete ? done() : (img.addEventListener('load', done), img.addEventListener('error', done));
         });
       }
+    });
+
+    // Mobile menu toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
     });
   </script>
 </body>
